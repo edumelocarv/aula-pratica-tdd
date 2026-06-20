@@ -102,3 +102,20 @@ def test_situacao_final_com_faltas_pouco_acima_de_25_porcento_reprova_por_falta(
 # Requisito 3 — enviar_boletim(email_service)
 # Use MagicMock para simular o serviço de e-mail
 # Escreva os testes ANTES de implementar o método
+def test_enviar_boletim_aciona_email_quando_reprovado():
+    aluno = Aluno(nome="João", notas=[4, 3, 5, 4])
+    email_service = MagicMock()
+
+    aluno.enviar_boletim(email_service)
+
+    email_service.enviar.assert_called_once_with(aluno.nome, aluno.calcular_media())
+
+
+def test_enviar_boletim_nao_aciona_email_quando_aprovado():
+    aluno = Aluno(nome="Maria", notas=[8, 9, 7, 8])
+    email_service = MagicMock()
+
+    aluno.enviar_boletim(email_service)
+
+    email_service.enviar.assert_not_called()
+    
