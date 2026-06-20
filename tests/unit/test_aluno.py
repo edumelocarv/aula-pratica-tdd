@@ -38,6 +38,35 @@ def test_calcular_media_arredondada_deve_arredondar_nao_truncar():
 # PARTE 2 — Implemente com TDD
 # Siga o ciclo: 🔴 escreva o teste → 🟢 implemente → 🟡 refatore
 # =============================================================
+# Requisito 1 — contar_aprovados(lista_de_alunos) -> int
+# Escreva os testes ANTES de implementar a função
+
+def test_contar_aprovados_todos_aprovados():
+    alunos = [
+        Aluno(nome="Maria", notas=[8, 9, 7, 8]),
+        Aluno(nome="Lucas", notas=[7, 7, 8, 9]),
+    ]
+    assert contar_aprovados(alunos) == 2
+
+
+def test_contar_aprovados_todos_reprovados():
+    alunos = [
+        Aluno(nome="João", notas=[4, 3, 5, 4]),
+        Aluno(nome="Sofia", notas=[2, 3, 4, 3]),
+    ]
+    assert contar_aprovados(alunos) == 0
+
+
+def test_contar_aprovados_lista_mista():
+    alunos = [
+        Aluno(nome="Maria", notas=[8, 9, 7, 8]),
+        Aluno(nome="João", notas=[4, 3, 5, 4]),
+    ]
+    assert contar_aprovados(alunos) == 1
+
+
+def test_contar_aprovados_lista_vazia():
+    assert contar_aprovados([]) == 0
 
 # Requisito 1 — contar_aprovados(lista_de_alunos) -> int
 # Escreva os testes ANTES de implementar a função
