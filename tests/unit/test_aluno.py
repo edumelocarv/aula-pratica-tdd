@@ -70,6 +70,29 @@ def test_contar_aprovados_lista_vazia():
 
 # Requisito 1 — contar_aprovados(lista_de_alunos) -> int
 # Escreva os testes ANTES de implementar a função
+def test_situacao_final_reprovado_por_falta_acima_de_25_porcento():
+    aluno = Aluno(nome="Carlos", notas=[9, 9, 9, 9], faltas=30)
+    assert aluno.situacao_final(total_aulas=100) == "Reprovado por falta"
+
+
+def test_situacao_final_aprovado_com_poucas_faltas_e_media_alta():
+    aluno = Aluno(nome="Maria", notas=[8, 9, 7, 8], faltas=5)
+    assert aluno.situacao_final(total_aulas=100) == "Aprovado"
+
+
+def test_situacao_final_reprovado_por_nota_com_poucas_faltas():
+    aluno = Aluno(nome="João", notas=[4, 3, 5, 4], faltas=5)
+    assert aluno.situacao_final(total_aulas=100) == "Reprovado por nota"
+
+
+def test_situacao_final_com_faltas_exatamente_em_25_porcento_segue_para_media():
+    aluno = Aluno(nome="Ana", notas=[8, 9, 7, 8], faltas=25)
+    assert aluno.situacao_final(total_aulas=100) == "Aprovado"
+
+
+def test_situacao_final_com_faltas_pouco_acima_de_25_porcento_reprova_por_falta():
+    aluno = Aluno(nome="Bia", notas=[9, 9, 9, 9], faltas=26)
+    assert aluno.situacao_final(total_aulas=100) == "Reprovado por falta"
 
 
 # Requisito 2 — situacao_final(total_aulas) -> str
